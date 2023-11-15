@@ -1,0 +1,42 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+    background-color: #222232;
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 600px;
+    border: 0;
+    border-radius: 20px;
+    text-align: center;
+    
+
+}
+.container {
+    background-color: white;
+    border: 0;
+    border-radius: 20px;
+    margin: 50px;
+    margin-top: 100px;
+    padding: 10px;
+    height: 400px;
+    transition: background-color 0.3s ease;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.container.hover {
+    background-color: gray;
+}
+
+.banner {
+    position:absolute;
+    left: 50%;
+    transform: translate(-50%);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
