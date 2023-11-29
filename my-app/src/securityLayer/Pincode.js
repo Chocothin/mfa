@@ -3,6 +3,7 @@ import style from "./Auth.module.css";
 import { BrowserRouter as Router ,Route, Routes, useNavigate } from 'react-router-dom';
 
 const answer = ['1','2','3','4','5','6'];
+//pincode 모듈
 
 const PinCode = () => {
   const length = 6;
@@ -27,6 +28,7 @@ const PinCode = () => {
     if(JSON.stringify(pin) === JSON.stringify(answer)){
       navigate('/next');
       alert("Correct!");
+      alert("Your asset is accessible");
     }
   }
 

@@ -2,18 +2,28 @@ import { useState } from "react";
 import { BrowserRouter as Router ,Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import style from "./App.module.css";
 import Main from "./Main/Main";
-import LoginButton from "./Login";
+import { useAuth0 } from '@auth0/auth0-react'
 
 
 
-const id = "chocothin";
-const pw = "8594wotj";
+const id = "1234";
+const pw = "1234";
 
 function CurrentPath() {
   const location = useLocation();
   console.log(location.pathname);
 
 }
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return <button 
+            className={style.loginBtn}
+            onClick={() => loginWithRedirect()}
+            >Log In
+        </button>;
+};
 
 function Wrapper() {
   return (

@@ -32,7 +32,7 @@ root.render(
         <Route path="/next/*" element={<Main />} />
         <Route path="/next/next2" element={<Otp/>} />
         <Route path="/next/next1" element={<BioAuth/>} />
-        <Route path="/next/next1" element={<PinCode/>} />
+        <Route path="/next/next0" element={<PinCode/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import style from './css/Main.module.css';
-import { BrowserRouter as Router, Route, Routes,Link,  useNavigate, useParams, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-input-slider';
-import SideBar from './SideBar';
 
 
 
@@ -68,7 +67,6 @@ function PopUp({ handleOnClick, setAssetImportance,setPopUpToggle }, popUpToggle
 
 function App() {
     const navigate = useNavigate();
-    const [assetType, setAssetType] = useState(0);
     const [assetImportance, setAssetImportance] = useState(0);
     const [popUpToggle, setPopUpToggle] = useState(false);
 

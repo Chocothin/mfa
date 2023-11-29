@@ -3,7 +3,7 @@ import '@corbado/webcomponent'
 import '@corbado/webcomponent/pkg/auth_cui.css'
 
 const CORBADO_PROJECT_ID = "pro-5890664499307067638";
-
+//생체 인증 모듈 - 데모 버전
 function BioAuth() {
     return (
         <div className="App">

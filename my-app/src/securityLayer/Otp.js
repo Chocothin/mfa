@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router ,Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import style from './Auth.module.css';
 import { getByPlaceholderText } from '@testing-library/react';
-
+//email otp 모듈
 const OTPComponent = () => {
   const [OTP, setOTP] = useState('');
   const [isOTPValid, setOTPValid] = useState(false);

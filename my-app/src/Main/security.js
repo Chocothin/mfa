@@ -47,18 +47,18 @@ function Security() {
     const [state, setState] = useState(1);
     const navigate = useNavigate();
 
-    const handleOnClickFirst = () => {
+    const handleOnClickFirst = () => {  //인증 없이 1차금고 navigate
         setState(1);
         navigate("/next/firstSafe")
     }
-    const handleOnClickSecond = () => {
+    const handleOnClickSecond = () => { //biometric 인증 후 2차 금고 navigate
         setState(2);
-        navigate("/next/next1")
+        navigate("/next/next1") // biometric 인증 모듈
 
     }
-    const handleOnClickThird = () => {
+    const handleOnClickThird = () => { //otp 인증 후 3차 금고 navigate
         setState(3);
-        navigate("/next/next2")
+        navigate("/next/next2") // otp 인증 모듈
 
     }
     return (

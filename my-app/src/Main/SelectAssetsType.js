@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useNavigate} from "react-router-dom";
 import style from "./css/SelectAssetsType.module.css";
 
-const AssetTypes = ['암호 화폐', '금융 자산', '디지털 문서', '부동산', '신원 정보' ]
-
+//자산 추가 시 자산 유형 별 연동 페이지 컴포넌트
 export function CryptoAsset() {
     const navigate = useNavigate();
 

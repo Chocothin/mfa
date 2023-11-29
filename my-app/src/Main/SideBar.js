@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router ,Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import style from "./css/Main.module.css";
 
 function App() {
@@ -8,9 +8,11 @@ function App() {
     const handleClick = () => {
         navigate("./");
     }
+
     return (
         <div className={style.sideBarBox}>
-            <div className={style.sideBarH1}>My-app.</div>
+            <div
+                className={style.sideBarH1}>My-app.</div>
             <button 
                 className={style.sideBarBtn}
                 onClick={handleClick}

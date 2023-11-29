@@ -16,15 +16,15 @@ var secret = speakeasy.generateSecret({ length: 20 });
 let transporter = nodemailer.createTransport({
   service: 'gmail', // 사용할 이메일 서비스
   auth: {
-    user: 'wotj220@gmail.com', // 보내는 사람 이메일
-    pass: 'vbfm cuwk uddk fbna' // 보내는 사람 이메일의 비밀번호
+    user: process.env.YOUR_EMAIL, // 보내는 사람 이메일
+    pass: process.env.YOUR_APP_PASSWORD // 보내는 사람 이메일의 비밀번호 - 구글 이메일의 경우 일시 비밀번호 발급 후 기입
   }
 });
 
 // OTP를 이메일로 보내는 함수
 const sendOTP = (email, otp) => {
   let mailOptions = {
-    from: 'wotj220@gmail.com',
+    from: process.env.YOUR_EMAIL, // 보내는 사람 이메일
     to: email, // 받는 사람 이메일
     subject: 'Your OTP',
     text: `Your OTP is ${otp}` // 메일 본문에 OTP 포함
