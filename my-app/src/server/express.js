@@ -3,14 +3,21 @@ var speakeasy = require('speakeasy');
 var bodyParser = require('body-parser');
 var app = express();
 var nodemailer = require('nodemailer');
+var QRCode = require('qrcode')
 var cors = require('cors');
 
+require('dotenv').config()
 app.use(cors());
 
 app.use(bodyParser.json());
 
 // OTP 비밀 키 생성
 var secret = speakeasy.generateSecret({ length: 20 });
+
+QRCode.toDataURL(secret.otpauth_url, function(err, data_url){
+  console.log(data_url);
+})
+
 
 // 이메일 설정
 let transporter = nodemailer.createTransport({
