@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
-import style from './Main.module.css';
-import { BrowserRouter as Router ,Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import style from './css/Main.module.css';
+import { BrowserRouter as Router, Route, Routes,Link,  useNavigate, useParams, Outlet } from 'react-router-dom';
 import Slider from 'react-input-slider';
-import SelectSecurityLevel from "../etc/SelectSecurityLevel";
+import SideBar from './SideBar';
 
-function PopUp({ handleOnClick, setAssetImportance }, popUpToggle) {
+
+
+
+function PopUp({ handleOnClick, setAssetImportance,setPopUpToggle }, popUpToggle) {
     const [x, setX] = useState(0);
     const navigate = useNavigate();
     const handleOnConfirm = () => {
@@ -15,7 +18,10 @@ function PopUp({ handleOnClick, setAssetImportance }, popUpToggle) {
     }
     return (
         <div className={style.popUpContainer}>
-            <button onClick={handleOnClick} className={style.popUpClose}>X</button>
+            <button 
+                onMouseLeave={setPopUpToggle(!popUpToggle)}
+                onClick={handleOnClick} 
+                className={style.popUpClose}>X</button>
             <p className={style.importanceDes}>Select Importance of Your Assets</p>
             <Slider className={style.slider}
                 styles={{
@@ -67,10 +73,9 @@ function App() {
     const [popUpToggle, setPopUpToggle] = useState(false);
 
     const handleOnClick = () => {
-        if(popUpToggle) setPopUpToggle(false);
-        else setPopUpToggle(true);
+        setPopUpToggle(!popUpToggle)
         
-        //navigate("/select")
+        navigate("/next/addAsset")
     }
     return (
         <div className={style.btnCont}>
@@ -80,6 +85,7 @@ function App() {
                     setAssetImportance={setAssetImportance} 
                     handleOnClick={handleOnClick} 
                     popUpToggle={popUpToggle}
+                    setPopUpToggle={setPopUpToggle}
                 />)
                 :
                 (<div className={style.btnLocation}>
@@ -97,7 +103,7 @@ function App() {
 function MyAssets() {
     return (
         <App/>
-    );
+     );
 }
 
 export default MyAssets;    

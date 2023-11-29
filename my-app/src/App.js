@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { BrowserRouter as Router ,Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import SelectSecurityLevel from "./etc/SelectSecurityLevel";
-import SideBar from "./Main/SideBar";
 import style from "./App.module.css";
 import Main from "./Main/Main";
+import LoginButton from "./Login";
+
 
 
 const id = "chocothin";
@@ -20,7 +20,6 @@ function Wrapper() {
     <div className={style.center}>
       <div className={style.box}>
         <div className={style.font}>
-          Log In
         </div>
       </div>
     </div>
@@ -61,12 +60,11 @@ function LoginPage() {
   console.log("loginpage")
   return (
     <div className={style.background}>
-      <Wrapper />
-      <UserDataInput />
+      <Wrapper/>
+      <LoginButton/>
     </div>
   );
 }
-
 
 
 function App() {
@@ -75,7 +73,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage/>} />
-      <Route path="/next" element={<Main />} />
+      <Route path="/next/*" element={<Main />} />
     </Routes>
   )
 };

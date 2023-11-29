@@ -11,15 +11,18 @@ const OTPComponent = () => {
   const navigate = useNavigate();
   const generateOTP = async () => {
     const response = await axios.post('/generate-otp', { email: email });
-    setOTP(response.data.otp);
     alert("Check your email");
   }
 
   const verifyOTP = async () => {
     const response = await axios.post('/verify-otp', { otp: OTP });
     setOTPValid(response.data.valid);
-    alert("Valid!");
-    navigate('/next');
+    console.log(isOTPValid, OTP);
+    if(response.data.valid){
+      alert("OTP is Valid!")
+      navigate('/next/thirdSafe');
+    }
+    else alert("OTP is Invalid")
   }
 
   const handleInputChange = (event) => {

@@ -39,6 +39,11 @@ const sendOTP = (email, otp) => {
   });
 }
 
+function log(target, key, descriptor) {
+  console.log(`Logging ${key} function`);
+  return descriptor;
+}
+
 // OTP 생성 엔드포인트
 app.post('/generate-otp', function (req, res) {
   var token = speakeasy.totp({
