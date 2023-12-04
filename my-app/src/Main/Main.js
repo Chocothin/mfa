@@ -5,28 +5,26 @@ import {AssetsType1, AssetsType2, AssetsType3} from './AssetsType';
 import Security from './Security';
 import style from './css/Main.module.css';
 import {Routes, Route, Link, useParams} from "react-router-dom"
-import { CryptoAsset, FinancialAsset, DigitalDocument, IdentityInfo } from './SelectAssetsType';
-const AssetTypes = ['암호 화폐', '금융 자산', '디지털 문서', '신원 정보']
+import { FirstSafeAsset, SecondSafeAsset, ThirdSafeAsset } from './SelectAssetsType';
+import { SecurityLevelProvider } from './SecurityLevelProvider';
+const AssetTypes = ['firstSafe', 'secondSafe', 'thirdSafe']
 
 const AssetScreen = () => {
     const { type } = useParams();
-    
     return (
         <div className={style.addAssetWrapper}>
             <h2 className={style.addAssetH2}>Selected Asset: {type}</h2>
             <div className={style.addAssetContainer}>
                 {(()=>{
                     switch (type) {
-                        case '암호 화폐':
-                          return <CryptoAsset/>;
-                        case '금융 자산':
-                          return <FinancialAsset/>;
-                        case '디지털 문서':
-                          return <DigitalDocument/>;
-                        case '신원 정보':
-                          return <IdentityInfo/>;
+                        case 'firstSafe':
+                          return <FirstSafeAsset/>;
+                        case 'secondSafe':
+                          return <SecondSafeAsset/>;
+                        case 'thirdSafe':
+                          return <ThirdSafeAsset/>;
                         default:
-                          return <h2>선택된 자산 유형이 없습니다.</h2>;
+                          return <h2>선택된 금고가 없습니다.</h2>;
                     }
                 })()}
             </div>
@@ -35,7 +33,7 @@ const AssetScreen = () => {
     
   }
 
-function AddAsset() {
+function AddAsset() { //자산 추가 컴포넌트
     const [showAssets, setShowAssets] = useState(false);
     const toggleAssets = () => {
         setShowAssets(!showAssets);
@@ -53,53 +51,55 @@ function AddAsset() {
                 </ul>
             )}
             <Routes>
-                <Route path="/:type" element={<AssetScreen/>}/>
+                <Route path="/:type" element={<AssetScreen/>}/> 
             </Routes>
         </div>
-    );
+    ); //선택한 자산 유형 연동 페이지로 navigate
 }
 
 function Main() {
     return (
-        <div className={style.background}>
-            <SideBar/>
-            <div className={style.myh1}>자산 스토리지</div>
-            <Routes>
-                <Route path="*" element={
-                    <div className={style.mainContainer}>
-                        <MyAssets/>
-                        <AssetsType1/>
-                        <Security/>
-                     </div>          
-                }/>
-                <Route path="firstSafe/*" element={
-                    <div className={style.mainContainer}>
-                        <MyAssets/>
-                        <AssetsType1/>
-                        <Security/>
-                    </div>    
-                }/>
-                <Route path="secondSafe/*" element={
-                    <div className={style.mainContainer}>
-                        <MyAssets/>
-                        <AssetsType2/>
-                        <Security/>
-                    </div>    
-                }/>
-                <Route path="thirdSafe/*" element={
-                    <div className={style.mainContainer}>
-                        <MyAssets/>
-                        <AssetsType3/>
-                        <Security/>
-                    </div>    
-                }/>
-                <Route path="addAsset/*" element={
-                    <div className={style.mainContainer}>
-                        <AddAsset/>
-                    </div>
-                }/>
-            </Routes>
-        </div>
+        <SecurityLevelProvider>
+            <div className={style.background}>
+                <SideBar/>
+                <div className={style.myh1}>자산 스토리지</div>
+                <Routes>
+                    <Route path="*" element={
+                        <div className={style.mainContainer}>
+                            <MyAssets/>
+                            <Security/>
+                         </div>          
+                    }/>
+                    <Route path="firstSafe/*" element={
+                        <div className={style.mainContainer}>
+                            <MyAssets/>
+                            <AssetsType1/>
+                            <Security/>
+                        </div>    
+                    }/>
+                    <Route path="secondSafe/*" element={
+                        <div className={style.mainContainer}>
+                            <MyAssets/>
+                            <AssetsType2/>
+                            <Security/>
+                        </div>    
+                    }/>
+                    <Route path="thirdSafe/*" element={
+                        <div className={style.mainContainer}>
+                            <MyAssets/>
+                            <AssetsType3/>
+                            <Security/>
+                        </div>    
+                    }/>
+                    <Route path="addAsset/*" element={
+                        <div className={style.mainContainer}>
+                            <AddAsset/>
+                        </div>
+                    }/>
+                </Routes>
+            </div>
+        </SecurityLevelProvider>
+
     );
 }
 

@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
+import {useSecurityLevel} from './SecurityLevelProvider';
 const Container = styled.div`
     position: relative;
     width: calc(100% - 40px);
@@ -44,22 +44,26 @@ const ThirdSafe = styled.button`
 `;
 
 function Security() {
-    const [state, setState] = useState(1);
+    const {securityLevel, setSecurityLevel} = useSecurityLevel();
     const navigate = useNavigate();
 
     const handleOnClickFirst = () => {  //인증 없이 1차금고 navigate
-        setState(1);
+        setSecurityLevel(1);
         navigate("/next/firstSafe")
     }
     const handleOnClickSecond = () => { //biometric 인증 후 2차 금고 navigate
-        setState(2);
-        navigate("/next/next1") // biometric 인증 모듈
-
+        if(securityLevel > 1) navigate("/next/secondSafe");
+        else 
+        {
+            navigate("/next/next1") // biometric 인증 모듈
+        }
     }
     const handleOnClickThird = () => { //otp 인증 후 3차 금고 navigate
-        setState(3);
-        navigate("/next/next2") // otp 인증 모듈
-
+        if(securityLevel > 2) navigate("/next/thirdSafe");
+        else { 
+            setSecurityLevel(3);
+            navigate("/next/next2") // otp 인증 모듈
+        }
     }
     return (
         <Container>

@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import { useNavigate, Routes, Route } from 'react-router-dom';
 import style from './css/Main.module.css';
-import { CryptoAsset, FinancialAsset, DigitalDocument, IdentityInfo } from './AssetsComponents';
+import { FirstAsset, SecondAsset, ThirdAsset} from './AssetsComponents';
 
+const assetType =['firstSafe', 'secondSafe','thirdSafe']
 
-const assetType = ['cryptoAsset', 'financialAsset','digitalDocument','identityInfo' ]
-
-function PopUpToggle({setIsPoppedUp},isPoppedUp) {
+function PopUpToggle({setIsPoppedUp},isPoppedUp) { //자산 유형 버튼 팝업 로직
     const navigate = useNavigate();
     const [isHover, setIsHover] = useState([false,false,false,false,false,false]);
     const onMouseEnter= (index) => {
@@ -65,7 +64,8 @@ function PopUpToggle({setIsPoppedUp},isPoppedUp) {
     );
 }
 
-export function AssetsType1() {
+//각 금고 접근 state에 따른 자산 타입 컴포넌트
+export function AssetsType1() { //first safe의 자산 타입 컴포넌트
     const [isPoppedUp, setIsPoppedUp] = useState(false);
 
     const handleBtnClicked = () => {
@@ -73,21 +73,7 @@ export function AssetsType1() {
     };
     return (
         <div className={style.assetsTypeCont}>
-            {
-                isPoppedUp ? (<PopUpToggle setIsPoppedUp={setIsPoppedUp} isPoppedUp={isPoppedUp}/>)
-                :
-                (<div className={style.btnLocation}>
-                    <button 
-                        onClick={handleBtnClicked}
-                        className={style.addBtn}>자산 타입
-                    </button>
-                </div>
-                )
-            }
-            <Routes>
-                    <Route path="" element={<div>Select Asset Type</div>}/>
-                    <Route path="/digitalDocument" element={<DigitalDocument/>}/>
-            </Routes>
+            <FirstAsset/>
         </div>
     );
 }
@@ -99,21 +85,7 @@ export function AssetsType2() {
     };
     return (
         <div className={style.assetsTypeCont}>
-            {
-                isPoppedUp ? (<PopUpToggle setIsPoppedUp={setIsPoppedUp} isPoppedUp={isPoppedUp}/>)
-                :
-                (<div className={style.btnLocation}>
-                    <button 
-                        onClick={handleBtnClicked}
-                        className={style.addBtn}>자산 타입
-                    </button>
-                </div>
-                )
-            }
-            <Routes>
-                    <Route path="" element={<div>Select Asset Type</div>}/>
-                    <Route path="/financialAsset" element={<FinancialAsset/>}/>
-            </Routes>
+            <SecondAsset/>
         </div>
     );
 }
@@ -123,8 +95,16 @@ export function AssetsType3() {
     const handleBtnClicked = () => {
         setIsPoppedUp(true);
     };
+    
     return (
         <div className={style.assetsTypeCont}>
+            <ThirdAsset/>
+        </div>
+    );
+}
+
+/*
+            
             {
                 isPoppedUp ? (<PopUpToggle setIsPoppedUp={setIsPoppedUp} isPoppedUp={isPoppedUp}/>)
                 :
@@ -136,12 +116,4 @@ export function AssetsType3() {
                 </div>
                 )
             }
-            <Routes>
-                    <Route path="" element={<div>Select Asset Type</div>}/>
-                    <Route path="/cryptoAsset" element={<CryptoAsset/>}/>
-                    <Route path="/identityInfo" element={<IdentityInfo/>}/>
-            </Routes>
-        </div>
-    );
-}
-
+*/

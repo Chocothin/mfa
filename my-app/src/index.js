@@ -6,7 +6,6 @@ import Main from "./Main/Main";
 import PinCode from './securityLayer/Pincode';
 import BioAuth from './securityLayer/BioAuth';
 import Otp from './securityLayer/Otp';
-import { AddAsset } from './Main/MyAssets'
 import { Auth0Provider } from '@auth0/auth0-react'
 
 function NotFound() {

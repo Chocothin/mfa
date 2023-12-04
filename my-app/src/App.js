@@ -6,14 +6,10 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 
 
-const id = "1234";
-const pw = "1234";
+//const id = "1234";
+//const pw = "1234";
 
-function CurrentPath() {
-  const location = useLocation();
-  console.log(location.pathname);
 
-}
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -36,7 +32,7 @@ function Wrapper() {
   );
 };
 
-
+/*
 function UserDataInput() {
   const navigate = useNavigate();
   const [userId, setId] = useState("");
@@ -64,7 +60,7 @@ function UserDataInput() {
     </div>
   );
 }
-
+*/
 
 function LoginPage() {
   console.log("loginpage")
@@ -79,7 +75,6 @@ function LoginPage() {
 
 function App() {
   console.log("app"); 
-  CurrentPath();
   return (
     <Routes>
       <Route path="/" element={<LoginPage/>} />
